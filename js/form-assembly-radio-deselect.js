@@ -98,6 +98,7 @@ function carry_forward(source_id, target_id) {
 	let radio_field_array = get_radio_field_array(target_id);
 	let radio_group = document.getElementById(target_id);
 
+	make_radio_group_exclusive(target_id);
 	radio_group.classList.add("offstate");
 
 	radio_field_array.map((d, i) => {
