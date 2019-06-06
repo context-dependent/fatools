@@ -33,6 +33,31 @@ function make_radio_group_exclusive(radio_group_id) {
 
 }
 
+function make_radio_group_exclusive_v2(radio_inputs) {
+
+	// Define the function that produces the outcome we want to happen 
+	// each time a radio button is clicked 
+	function unselect_all_radios_but_one(arradios, selected) {
+		arradios.map((d, i) => {
+			if(i != selected) {d.checked = false};
+		});
+	}
+
+	// Define a function that adds an event listener to each radio button that triggers 
+	// unselect_all_radios_but_one whenever they are clicked
+	function add_click_event_listener(arradios) {
+		arradios.map((d, i, r) => {
+			d.onclick = () => {
+				unselect_all_radios_but_one(r, i);
+			}
+		});
+	}
+
+	// Execute the function above on the array of radio buttons
+	add_click_event_listener(radio_inputs);
+
+}
+
 
 function update_switch_array(checkbox_array) {
 
@@ -54,9 +79,10 @@ function show_hide_radios(radio_group_id, radio_field_array, switch_array) {
 
 		radio_field_array.map((d, i, r) => {
 			if(!switch_array[i]) {
-				d.classList.add("offstate")
+				d.checked = false;
+				d.classList.add("offstate");
 			} else {
-				d.classList.remove("offstate")
+				d.classList.remove("offstate");
 			}
 		}); 
 
@@ -92,18 +118,19 @@ function get_checkbox_input_array(checkbox_group_id) {
 
 function carry_forward(source_id, target_id) {
 
-
 	let switch_array = [];
 	let checkbox_input_array = get_checkbox_input_array(source_id);
 	let radio_field_array = get_radio_field_array(target_id);
 	let radio_group = document.getElementById(target_id);
+	let radio_inputs = Array.from(radio_group.getElementsByTagName("input"));
 
-	make_radio_group_exclusive(target_id);
 	radio_group.classList.add("offstate");
 
 	radio_field_array.map((d, i) => {
 		d.classList.add("offstate");
 	});
+
+	make_radio_group_exclusive_v2(radio_inputs);
 
 	function add_click_event_listener(checkbox_input_array, radio_field_array) {
 		checkbox_input_array.map((d, i, r) => {
