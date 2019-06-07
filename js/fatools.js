@@ -163,7 +163,7 @@
 
 		},
 
-		pipe_text : function() {
+		pipe_querystring_text : function() {
 
 			let html_content_nodes = Array.from(document.getElementsByClassName("htmlContent"));
 			let querystring = this.utils.get_querystring(); 
@@ -178,6 +178,15 @@
 		},
 	};
 
-	return fatools; 
+	// Make sure we're in a browser
+    if (window) {
+
+        // Make sure we're not overwriting the qs key
+        if (!window.fatools) {
+            window.fatools = fatools;
+        } else {
+            throw new Error('Error bootstrapping fatools: window.fatools already set.');
+        }
+    };
 
 })();
