@@ -77,12 +77,12 @@
 		    	const utils = this;
 				
 				function replace_key(key, value) {
-					let old_text = node.innerText;
+					let old_text = node.innerHTML;
 					let placeholder = "{{" + key + "}}";
 					let new_text = utils.str_replace_all(old_text, placeholder, value);
 
 
-					node.innerText = new_text;
+					node.innerHTML = new_text;
 				};
 
 				keys.map((d, i) => {
