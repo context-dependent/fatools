@@ -19,14 +19,15 @@
 		      query = query.split('&');
 
 		      // Loop through each key/value pair
-		      query.map(function (part) {
+		      query.forEach((d, i) =>  {
 		        var key;
 		        var value;
+		        var pair; 
 
 		        // Split each key/value pair into their separate parts
-		        part = part.split('=');
-		        key = part[0];
-		        value = part[1];
+		        pair = d.split('=');
+		        key = pair[0];
+		        value = pair[1];
 
 		        // If the key doesn't exist yet, set it
 		        if (!obj[key]) {
@@ -242,7 +243,7 @@
 
 		pipe_querystring_text() {
 
-			let html_content_nodes = Array.from(document.getElementsByClassName("htmlContent"));
+			let html_content_nodes = Array.from(document.querySelectorAll(".htmlContent, legend"));
 			let querystring = utils.get_querystring(); 
 			let keys = Object.keys(querystring);
 			let vals = Object.values(querystring);
@@ -259,8 +260,6 @@
 			let contact = ""
 			// get response id or enrollment + survey id
 			let gift_id = ""
-
-
 
 		},
 	};
