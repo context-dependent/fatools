@@ -92,16 +92,20 @@
 	    },
 
 	    array_sum(x) {
-
+	    	// declare the sum of the array
 	    	let res = x.reduce((a, b) => a + b, 0);
 
+	    	// return the sum of the array
 	    	return res;
 
 	    },
 
 	    iso_date(x) {
+
+	    	// slice the date object after converting it to an isostring
 	    	let res = x.toISOString().slice(0, 10);
 
+	    	// return the string
 	    	return res;
 	    },
 	};
