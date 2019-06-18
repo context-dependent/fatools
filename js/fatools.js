@@ -164,13 +164,18 @@
 		},
 
 		update_switch_array(inputs) {
+
+			// get indices of all checked inputs
 			let switch_array = inputs.map((d, i) => {return d.checked});
 
+			// return checked indices as a boolean array
 			return switch_array;
 
 		},
 
 		unselect_all_but_one(radio_inputs, selected) {
+
+			// map over inputs, unchecking if they are not equal to selected
 			radio_inputs.map((d, i) => {
 				if(i != selected) {d.checked = false};
 			});
@@ -178,6 +183,8 @@
 		}, 
 
 		get_expiry_date(months_from_now = 2) {
+
+			// initialize new date object
 			let expiry_date = new Date();
 
 			let month_now = expiry_date.getMonth();
@@ -214,7 +221,8 @@
 	const fatools = {
 
 		make_radio_group_exclusive(radio_group) {
-
+			// add a click event listener to each input that unselects
+			// all inputs but the clicked one
 			radio_group.inputs.map((d, i, r) => {
 				d.onclick = () => {
 					helpers.unselect_all_but_one(r, i);
@@ -225,15 +233,23 @@
 
 		carry_forward(source_id, target_id) {
 
+			// initialize the switch array
 			let switch_array = []; 
+			// collect source input group
 			let source = utils.get_inputs_by_type(source_id, 'checkbox');
+			// collect target input group
 			let target = utils.get_inputs_by_type(target_id, 'radio');
 
+			// hide target input group
 			target.group.classList.add("offstate");
+			// hide each individual target input field
 			target.fields.map((d, i) => {d.classList.add("offstate")});
 
+			// make the target radio group exclusive (single select)
 			this.make_radio_group_exclusive(target)
 
+			// add a click event listener to each source input that 
+			// shows the appropriate fields in the target input group
 			source.inputs.map((d, i, r) => {
 
 				d.onclick = () =>  {
@@ -271,7 +287,7 @@
 	// Make sure we're in a browser
     if (window) {
 
-        // Make sure we're not overwriting the qs key
+        // Make sure we're not overwriting the fatools key
         if (!window.fatools) {
             window.fatools = fatools;
         } else {
