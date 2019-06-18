@@ -31,7 +31,7 @@ function make_radio_group_exclusive(radio_group_id) {
 	// Execute the function above on the array of radio buttons
 	add_click_event_listener(target_radio_array);
 
-}
+};
 
 function make_radio_group_exclusive_v2(radio_inputs) {
 
@@ -56,7 +56,7 @@ function make_radio_group_exclusive_v2(radio_inputs) {
 	// Execute the function above on the array of radio buttons
 	add_click_event_listener(radio_inputs);
 
-}
+};
 
 
 function update_switch_array(checkbox_array) {
