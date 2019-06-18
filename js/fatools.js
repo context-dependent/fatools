@@ -243,7 +243,7 @@
 
 		pipe_querystring_text() {
 
-			let html_content_nodes = Array.from(document.querySelectorAll(".htmlContent, legend"));
+			let html_content_nodes = Array.from(document.querySelectorAll(".htmlContent, legend, label"));
 			let querystring = utils.get_querystring(); 
 			let keys = Object.keys(querystring);
 			let vals = Object.values(querystring);
@@ -273,6 +273,7 @@
         } else {
             throw new Error('Error bootstrapping fatools: window.fatools already set.');
         }
+        
     };
 
 })();
