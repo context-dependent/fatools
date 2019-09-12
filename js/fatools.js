@@ -153,6 +153,7 @@
 					// otherwise, show the radio input
 					} else {
 						d.classList.remove("offstate");
+						field_group.inputs[i].disabled = false;
 					};
 				});
 
@@ -243,7 +244,11 @@
 			// hide target input group
 			target.group.classList.add("offstate");
 			// hide each individual target input field
-			target.fields.map((d, i) => {d.classList.add("offstate")});
+			target.fields.map(
+				(d, i) => {
+					d.classList.add("offstate");
+				}
+			);
 
 			// make the target radio group exclusive (single select)
 			this.make_radio_group_exclusive(target)
